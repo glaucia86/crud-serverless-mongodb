@@ -59,5 +59,27 @@
             ""
         ],
         "description": "Snippet responsável por criar um novo 'Funcionário'"
+    },
+    "Snippet responsável por listar todos os 'Funcionários'": {
+        "prefix": "mongo-serverless-list",
+        "body": [
+            "const createMongoClient = require('../shared/mongo');",
+            "",
+            "module.exports = async context => {",
+            "    const { client: MongoClient, closeConnectionFn } = await createMongoClient();",
+            "",
+            "    const Funcionarios = MongoClient.collection('funcionarios');",
+            "    const res = await Funcionarios.find({});",
+            "    const body = await res.toArray();",
+            "",
+            "    closeConnectionFn();",
+            "",
+            "    context.res = {",
+            "        status: 200,",
+            "        body",
+            "    };",
+            "}; "
+        ],
+        "description": "Snippet responsável por listar todos os 'Funcionários'"
     }
 }
