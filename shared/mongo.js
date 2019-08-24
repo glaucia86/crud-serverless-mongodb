@@ -6,14 +6,6 @@
  * Digitar o snippet: mongo-serverless-conn
  */
 
-/**
- * Arquivo: mongo.js
- * Data: 24/08/2019
- * Descrição: arquivo responsável por tratar a conexão da Base de Dados localmente
- * 
- * Digitar o snippet: mongo-serverless-conn
- */
-
 const { MongoClient } = require('mongodb');
 
 const config = { 

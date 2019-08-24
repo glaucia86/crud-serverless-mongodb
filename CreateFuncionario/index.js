@@ -1,16 +1,38 @@
-module.exports = async function (context, req) {
-    context.log('JavaScript HTTP trigger function processed a request.');
+/**
+ * Arquivo: CreateFuncionario/index.js
+ * Data: 24/08/2019
+ * Descrição: arquivo responsável por criar um novo 'Funcionário'
+ *
+ * Digitar o snippet: mongo-serverless-create
+ */
 
-    if (req.query.name || (req.body && req.body.name)) {
-        context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: "Hello " + (req.query.name || req.body.name)
-        };
-    }
-    else {
-        context.res = {
-            status: 400,
-            body: "Please pass a name on the query string or in the request body"
-        };
-    }
+const createMongoClient = require("../shared/mongo");
+
+module.exports = async function(context, req) {
+  const funcionario = req.body || {};
+
+  if (funcionario) {
+    context.res = {
+      status: 400,
+      body: "Os dados do(a) Funcionário(a) é obrigatório!"
+    };
+  }
+
+  const { client: MongoClient, closeConnectionFn } = await createMongoClient();
+  const Funcionarios = MongoClient.collection("funcionarios");
+
+  try {
+    const funcionarios = await Funcionarios.insert(funcionario);
+    closeConnectionFn();
+
+    context.res = {
+      status: 201,
+      body: funcionarios.ops[0]
+    };
+  } catch (error) {
+    context.res = {
+      status: 500,
+      body: "Error ao criar um novo Funcionário(a)"
+    };
+  }
 };
