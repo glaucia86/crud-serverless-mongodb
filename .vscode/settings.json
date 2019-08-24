@@ -1,0 +1,7 @@
+{
+    "azureFunctions.deploySubpath": "./crud-serverless-mongodb",
+    "azureFunctions.projectLanguage": "JavaScript",
+    "azureFunctions.projectRuntime": "~2",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "npm prune"
+}
