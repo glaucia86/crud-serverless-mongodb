@@ -10,6 +10,7 @@ const { MongoClient } = require('mongodb');
 
 const config = { 
     url: 'mongodb://localhost:27017/crud-serverless-mongo-wavy',
+    dbName: 'crud-serverless-mongo-wavy'
 };
 
 module.exports = () => new Promise((resolve, reject) => {
