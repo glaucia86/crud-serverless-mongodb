@@ -7,8 +7,8 @@
  * Digitar o snippet: mongo-serverless-update
  */
 
-const { ObjectID } = require("mongodb")
-const createMongoClient = require("../shared/mongo")
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
 module.exports = async function (context, req) {
   const { id } = req.params
@@ -17,14 +17,14 @@ module.exports = async function (context, req) {
   if (!id || !funcionario) {
     context.res = {
       status: 400,
-      body: "Os campos são obrigatórios"
+      body: 'Os campos são obrigatórios'
     }
 
     return
   }
 
   const { db, connection } = await createMongoClient()
-  const Funcionarios = db.collection("funcionarios")
+  const Funcionarios = db.collection('funcionarios')
 
   try {
     const funcionarios = await Funcionarios.findOneAndUpdate(
@@ -41,7 +41,7 @@ module.exports = async function (context, req) {
   } catch (error) {
     context.res = {
       status: 500,
-      body: "Erro ao atualizar o Funcionário"
+      body: 'Erro ao atualizar o Funcionário'
     }
   }
 }

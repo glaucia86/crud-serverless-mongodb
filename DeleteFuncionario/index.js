@@ -7,8 +7,8 @@
  * Digitar o snippet: mongo-serverless-delete
  */
 
-const { ObjectID } = require("mongodb")
-const createMongoClient = require("../shared/mongo")
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
 module.exports = async function (context, req) {
   const { id } = req.params
@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
   if (!id) {
     context.res = {
       status: 400,
-      body: "Os campos são obrigatórios!"
+      body: 'Os campos são obrigatórios!'
     }
 
     return
@@ -31,13 +31,12 @@ module.exports = async function (context, req) {
     connection.close()
     context.res = {
       status: 200,
-      body: "Funcionário excluído com sucesso!"
+      body: 'Funcionário excluído com sucesso!'
     }
   } catch (error) {
     context.res = {
       status: 500,
-      body: "Erro ao excluir Funcionário" + id
+      body: 'Erro ao excluir Funcionário' + id
     }
   }
 }
-

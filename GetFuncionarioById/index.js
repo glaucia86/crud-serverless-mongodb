@@ -7,8 +7,8 @@
  * Digitar o snippet: mongo-serverless-listOne
  */
 
-const { ObjectID } = require("mongodb")
-const createMongoClient = require("../shared/mongo")
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
 module.exports = async function (context, req) {
   const { id } = req.params
@@ -16,7 +16,7 @@ module.exports = async function (context, req) {
   if (!id) {
     context.res = {
       status: 400,
-      body: "Por favor, passe o número correto do Id do Funcionário!"
+      body: 'Por favor, passe o número correto do Id do Funcionário!'
     }
 
     return

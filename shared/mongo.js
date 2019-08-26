@@ -6,7 +6,7 @@
  * Digitar o snippet: mongo-serverless-conn
  */
 
-const { MongoClient } = require('mongodb');
+const { MongoClient } = require('mongodb')
 
 const config = {
   url: 'mongodb://localhost:27017/crud-serverless-mongo-wavy',
@@ -22,6 +22,4 @@ async function createConnection () {
   }
 }
 
-module.exports = createConnection()
-
-
+module.exports = createConnection
