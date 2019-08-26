@@ -9,8 +9,8 @@
 const { MongoClient } = require('mongodb')
 
 const config = {
-  dbName: 'crud-serverless-mongo-wavy',
-  url: `mongodb://localhost:27017/${config.dbName}`
+  url: 'mongodb://localhost:27017/crud-serverless-mongo-wavy',
+  dbName: 'crud-serverless-mongo-wavy'
 }
 
 async function createConnection () {
