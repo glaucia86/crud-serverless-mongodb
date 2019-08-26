@@ -30,7 +30,7 @@ module.exports = async function (context, req) {
     await Funcionarios.findOneAndDelete({ _id: ObjectID(id) })
     connection.close()
     context.res = {
-      status: 200,
+      status: 204,
       body: 'Funcionário excluído com sucesso!'
     }
   } catch (error) {
