@@ -6,19 +6,20 @@
  * Digitar o snippet: mongo-serverless-list
  */
 
-const createMongoClient = require('../shared/mongo');
+const createMongoClient = require('../shared/mongo')
 
 module.exports = async context => {
-    const { client: MongoClient, closeConnectionFn } = await createMongoClient();
+  const { db, connection } = await createMongoClient()
 
-    const Funcionarios = MongoClient.collection('funcionarios');
-    const res = await Funcionarios.find({});
-    const body = await res.toArray();
 
-    closeConnectionFn();
+  const Funcionarios = db.collection('funcionarios')
+  const res = await Funcionarios.find({})
+  const body = await res.toArray()
 
-    context.res = {
-        status: 200,
-        body
-    };
-}; 
+  connection.close()
+
+  context.res = {
+    status: 200,
+    body
+  }
+}
