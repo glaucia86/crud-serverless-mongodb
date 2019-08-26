@@ -7,36 +7,37 @@
  * Digitar o snippet: mongo-serverless-listOne
  */
 
-const { ObjectID } = require("mongodb");
-const createMongoClient = require("../shared/mongo");
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
-module.exports = async function(context, req) {
-    const { id } = req.params;
+module.exports = async function (context, req) {
+  const { id } = req.params
 
-    if (!id) {
-        context.res = {
-            status: 400,
-            body: "Por favor, passe o número correto do Id do Funcionário!"
-        };
-
-        return;
+  if (!id) {
+    context.res = {
+      status: 400,
+      body: 'Por favor, passe o número correto do Id do Funcionário!'
     }
 
-    const { client: MongoClient, closeConnectionFn } = await createMongoClient();
-    const Funcionarios = MongoClient.collection('funcionarios');
+    return
+  }
 
-    try {
-        const body = await Funcionarios.findOne({ _id: ObjectID(id) });
+  const { db, connection } = await createMongoClient()
 
-        closeConnectionFn();
-        context.res = { 
-            status: 200, 
-            body 
-        };
-    } catch (error) {
-        context.res = {
-            status: 500,
-            body: 'Erro ao listar o Funcionário pelo Id.'
-        }
-    }   
-};
+  const Funcionarios = db.collection('funcionarios')
+
+  try {
+    const body = await Funcionarios.findOne({ _id: ObjectID(id) })
+
+    connection.close()
+    context.res = {
+      status: 200,
+      body
+    }
+  } catch (error) {
+    context.res = {
+      status: 500,
+      body: 'Erro ao listar o Funcionário pelo Id.'
+    }
+  }
+}

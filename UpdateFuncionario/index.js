@@ -7,41 +7,41 @@
  * Digitar o snippet: mongo-serverless-update
  */
 
-const { ObjectID } = require("mongodb");
-const createMongoClient = require("../shared/mongo");
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
-module.exports = async function(context, req) {
-    const { id } = req.params;
-    const funcionario = req.body || {};
+module.exports = async function (context, req) {
+  const { id } = req.params
+  const funcionario = req.body || {}
 
-    if (!id || !funcionario) {
-        context.res = {
-            status: 400,
-            body: "Os campos são obrigatórios"
-        };
-
-        return;
+  if (!id || !funcionario) {
+    context.res = {
+      status: 400,
+      body: 'Os campos são obrigatórios'
     }
 
-    const { client: MongoClient, closeConnectionFn } = await createMongoClient();
-    const Funcionarios = MongoClient.collection("funcionarios");
+    return
+  }
 
-    try {
-        const funcionarios = await Funcionarios.findOneAndUpdate(
-            { _id: ObjectID(id) },
-            { $set: funcionario }
-        );
+  const { db, connection } = await createMongoClient()
+  const Funcionarios = db.collection('funcionarios')
 
-        closeConnectionFn();
+  try {
+    const funcionarios = await Funcionarios.findOneAndUpdate(
+      { _id: ObjectID(id) },
+      { $set: funcionario }
+    )
 
-        context.res = { 
-            status: 200, 
-            body: funcionarios 
-        };
-    } catch (error) {
-        context.res = {
-            status: 500,
-            body: "Erro ao atualizar o Funcionário"
-        };
+    connection.close()
+
+    context.res = {
+      status: 200,
+      body: funcionarios
     }
-};
+  } catch (error) {
+    context.res = {
+      status: 500,
+      body: 'Erro ao atualizar o Funcionário'
+    }
+  }
+}

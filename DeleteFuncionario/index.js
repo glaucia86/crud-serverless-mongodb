@@ -7,36 +7,36 @@
  * Digitar o snippet: mongo-serverless-delete
  */
 
-const { ObjectID } = require("mongodb");
-const createMongoClient = require("../shared/mongo");
+const { ObjectID } = require('mongodb')
+const createMongoClient = require('../shared/mongo')
 
-module.exports = async function(context, req) {
-    const { id } = req.params;
+module.exports = async function (context, req) {
+  const { id } = req.params
 
-    if (!id) {
-        context.res = {
-            status: 400,
-            body: "Os campos são obrigatórios!"
-        };
-
-        return;
+  if (!id) {
+    context.res = {
+      status: 400,
+      body: 'Os campos são obrigatórios!'
     }
 
-    const { client: MongoClient, closeConnectionFn } = await createMongoClient();
-    const Funcionarios = MongoClient.collection('funcionarios');
+    return
+  }
 
-    try {
-        await Funcionarios.findOneAndDelete({ _id: ObjectID(id) });
-        closeConnectionFn();
-        context.res = {
-            status: 200,
-            body: "Funcionário excluído com sucesso!"
-        };
-    } catch (error) {
-        context.res = {
-            status: 500,
-            body: "Erro ao excluir Funcionário" + id
-        };
+  const { db, connection } = await createMongoClient()
+
+  const Funcionarios = db.collection('funcionarios')
+
+  try {
+    await Funcionarios.findOneAndDelete({ _id: ObjectID(id) })
+    connection.close()
+    context.res = {
+      status: 204,
+      body: 'Funcionário excluído com sucesso!'
     }
-};
-
+  } catch (error) {
+    context.res = {
+      status: 500,
+      body: 'Erro ao excluir Funcionário' + id
+    }
+  }
+}

@@ -6,33 +6,34 @@
  * Digitar o snippet: mongo-serverless-create
  */
 
-const createMongoClient = require("../shared/mongo");
+const createMongoClient = require('../shared/mongo')
 
-module.exports = async function(context, req) {
-  const funcionario = req.body || {};
+module.exports = async function (context, req) {
+  const funcionario = req.body || {}
 
   if (funcionario) {
     context.res = {
       status: 400,
-      body: "Os dados do(a) Funcionário(a) é obrigatório!"
-    };
+      body: 'Os dados do(a) Funcionário(a) é obrigatório!'
+    }
   }
 
-  const { client: MongoClient, closeConnectionFn } = await createMongoClient();
-  const Funcionarios = MongoClient.collection("funcionarios");
+  const { db, connection } = await createMongoClient()
+
+  const Funcionarios = db.collection('funcionarios')
 
   try {
-    const funcionarios = await Funcionarios.insert(funcionario);
-    closeConnectionFn();
+    const funcionarios = await Funcionarios.insert(funcionario)
+    connection.close()
 
     context.res = {
       status: 201,
       body: funcionarios.ops[0]
-    };
+    }
   } catch (error) {
     context.res = {
       status: 500,
-      body: "Error ao criar um novo Funcionário(a)"
-    };
+      body: 'Error ao criar um novo Funcionário(a)'
+    }
   }
-};
+}
