@@ -9,8 +9,8 @@ Repositório responsável por persistir os verbos HTTP's (GET, POST, DELETE, PUT
 - **[Visual Studio Code](https://code.visualstudio.com/?WT.mc_id=mongoserverless-github-gllemos)**
 - **[Node.js](https://nodejs.org/en/)**
 - **[Extensão Visual Studio Code: Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions&WT.mc_id=mongoserverless-github-gllemos)**
-- Mongodb Community Server **[DOWNLOAD AQUI](https://www.mongodb.com/download-center/community)**
-- MongodB Compass GUI **[DOWNLOAD AQUI](https://www.mongodb.com/download-center/compass)**
+- **[Mongodb Community Server ](https://www.mongodb.com/download-center/community)**
+- **[MongodB Compass GUI](https://www.mongodb.com/download-center/compass)**
 - **[Conta Azure - Conta Gratuita](https://azure.microsoft.com/free/?WT.mc_id=mongoserverless-github-gllemos)**
 
 ## Conta - Azure for Students ⭐️
@@ -29,9 +29,25 @@ Aqui ensino como você pode persistir um dado usando o HTTP Trigger, via POST di
 > npm i -g azure-functions-core-tools --unsafe-perm true
 ```
 
-2. Execute o MongoDb ou MongoDb Compass!
+2. Crie na raiz principal do projeto o arquivo: `local.settings.json` e inclua o seguinte bloco de código:
 
-3. Agora, abre novamente o seu prompt de comando e execute o comando:
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "{AzureWebJobsStorage}"
+  },
+  "Host": {
+    "LocalHttpPort": 7071,
+    "CORS": "*"
+  }
+}
+```
+
+3. Execute o MongoDb ou MongoDb Compass!
+
+4. Agora, abre novamente o seu prompt de comando e execute o comando:
 
 ```bash
 > func host start

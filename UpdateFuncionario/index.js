@@ -29,7 +29,7 @@ module.exports = async function(context, req) {
     try {
         const funcionarios = await Funcionarios.findOneAndUpdate(
             { _id: ObjectID(id) },
-            { set: funcionario }
+            { $set: funcionario }
         );
 
         closeConnectionFn();
