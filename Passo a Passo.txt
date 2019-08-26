@@ -8,7 +8,7 @@ Passo 4: digitar o comando: func new
 
 Passo 5: escolher as opções: HTTP Trigger -> CreateFuncionario (abrir o code)
 
-Passo 6: alterar o arquivo: CreatePalestrante/function.json -> 
+Passo 6: alterar o arquivo: CreatePalestrante/function.json ->
 		"authLevel": "anonymous",
 		"methods": ["post"],
       		"route": "funcionario"
@@ -25,10 +25,10 @@ Passo 7: Instalar o mongodb -> npm i mongodb
 Passo 8: Criar uma pasta: shared/mongo.js
 
 Passo 9: dentro do arquivo mongo.js digitar o snippet:
-	->  mongo-braziljs-conn
+	->  mongo-serverless-conn
 
 Passo 10: alterar o arquivo: index.js e digitar o snippet:
-	-> create-palestrante-serverless
+	-> mongo-serverless-create
 
 Passo 11: executar a função: func host start
 
@@ -41,11 +41,11 @@ Passo 13: alterar o arquivo no front (palestrante.service.ts) e incluir a url da
 
 Passo 14: mostrar q persistiu localmente no MongoDb Compass
 
-Passo 15: criar nova função para listar os palestrantes: func new 
+Passo 15: criar nova função para listar os palestrantes: func new
 
 Passo 16: escolher as opções: HTTP Trigger -> GetPalestrantes (abrir o code)
 
-Passo 17: alterar o arquivo: GetPalestrantes/function.json -> 
+Passo 17: alterar o arquivo: GetPalestrantes/function.json ->
 		"authLevel": "anonymous",
 		"methods": ["get"],
       		"route": "palestrantes"
