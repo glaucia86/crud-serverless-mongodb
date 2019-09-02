@@ -1,4 +1,4 @@
-# CRUD Serverless com Azure Functions & MongoDb
+# CRUD Arquitetura Serverless com Azure Functions & MongoDb
 
 [![bit-community.png](https://i.postimg.cc/zGhWZqX7/bit-community.png)](https://postimg.cc/bZzd1cnS)
 
