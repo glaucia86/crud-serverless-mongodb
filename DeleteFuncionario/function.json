@@ -5,7 +5,7 @@
             "direction": "in",
             "name": "req",
             "methods": ["delete"],
-            "route": "funcionario/{id}"
+            "route": "funcionarios/{id}"
         },
         {
             "type": "http",

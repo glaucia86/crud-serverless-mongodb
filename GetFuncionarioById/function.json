@@ -5,7 +5,7 @@
             "direction": "in",
             "name": "req",
             "methods": ["get"],
-            "route": "funcionario/{id}"
+            "route": "funcionarios/{id}"
         },
         {
             "type": "http",

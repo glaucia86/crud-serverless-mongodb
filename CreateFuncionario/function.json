@@ -5,7 +5,7 @@
             "direction": "in",
             "name": "req",
             "methods": ["post"],
-            "route": "funcionario"
+            "route": "funcionarios"
         },
         {
             "type": "http",

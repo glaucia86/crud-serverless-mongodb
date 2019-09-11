@@ -1,11 +1,11 @@
 {
     "bindings": [{
-            "authLevel": "function",
+            "authLevel": "anonymous",
             "type": "httpTrigger",
             "direction": "in",
             "name": "req",
             "methods": ["put"],
-            "route": "funcionario/{id}"
+            "route": "funcionarios/{id}"
         },
         {
             "type": "http",
