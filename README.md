@@ -1,4 +1,4 @@
-# CRUD Serverless com Azure Functions & MongoDb
+# CRUD - Arquitetura Serverless com Azure Functions & MongoDb
 
 [![bit-community.png](https://i.postimg.cc/zGhWZqX7/bit-community.png)](https://postimg.cc/bZzd1cnS)
 
@@ -11,6 +11,7 @@ Repositório responsável por persistir os verbos HTTP's (GET, POST, DELETE, PUT
 - **[Extensão Visual Studio Code: Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions&WT.mc_id=mongoserverless-github-gllemos)**
 - **[Mongodb Community Server ](https://www.mongodb.com/download-center/community)**
 - **[MongodB Compass GUI](https://www.mongodb.com/download-center/compass)**
+- **[Postman](https://www.getpostman.com/)**
 - **[Conta Azure - Conta Gratuita](https://azure.microsoft.com/free/?WT.mc_id=mongoserverless-github-gllemos)**
 
 ## Conta - Azure for Students ⭐️
